@@ -1,0 +1,158 @@
+/* Base Styles */
+:root {
+    --primary-color: #8e6c88;
+    --secondary-color: #d4b8c7;
+    --accent-color: #f8a5aa;
+    --text-color: #333;
+    --light-text: #f9f9f9;
+    --border-radius: 8px;
+  }
+  
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  
+  body {
+    font-family: 'Montserrat', sans-serif;
+    line-height: 1.6;
+    color: var(--text-color);
+    background-color: #faf5f9;
+  }
+  
+  .wedding-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  /* Header Styles */
+  .wedding-header {
+    text-align: center;
+    padding: 40px 0;
+    background-color: var(--primary-color);
+    color: var(--light-text);
+    border-radius: var(--border-radius);
+    margin-bottom: 30px;
+  }
+  
+  .wedding-header h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+  }
+  
+  /* Main Content */
+  .wedding-main {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+  
+  @media (min-width: 768px) {
+    .wedding-main {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+  
+  /* Form Styles */
+  .wedding-form {
+    background: white;
+    padding: 25px;
+    border-radius: var(--border-radius);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .form-group {
+    margin-bottom: 20px;
+  }
+  
+  .form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+  }
+  
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: var(--border-radius);
+    font-family: inherit;
+    font-size: 16px;
+  }
+  
+  .form-group textarea {
+    resize: vertical;
+    min-height: 80px;
+  }
+  
+  .wedding-btn {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: var(--border-radius);
+    font-size: 16px;
+    cursor: pointer;
+    width: 100%;
+    transition: background-color 0.3s;
+  }
+  
+  .wedding-btn:hover {
+    background-color: #7a5a74;
+  }
+  
+  /* Guest List Styles */
+  .guest-list-section {
+    background: white;
+    padding: 25px;
+    border-radius: var(--border-radius);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .guest-list {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 15px;
+    margin-top: 20px;
+  }
+  
+  .guest-card {
+    border: 1px solid var(--secondary-color);
+    padding: 15px;
+    border-radius: var(--border-radius);
+    background-color: #fef9fb;
+  }
+  
+  .guest-card h3 {
+    color: var(--primary-color);
+    margin-bottom: 5px;
+  }
+  
+  .dietary {
+    font-size: 0.9rem;
+    color: #666;
+    margin-top: 5px;
+    font-style: italic;
+  }
+  
+  /* Footer Styles */
+  .wedding-footer {
+    text-align: center;
+    margin-top: 40px;
+    padding: 20px;
+    color: var(--primary-color);
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+  }
+  
+  /* Responsive Adjustments */
+  @media (max-width: 600px) {
+    .wedding-header h1 {
+      font-size: 2rem;
+    }
+  }

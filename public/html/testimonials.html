@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Team SPC - Reviews</title>
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-firestore-compat.js"></script>
+    <link rel="stylesheet" href="../css/testimonals.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <a href="Home.html" class="logo">『 𝗧𝗘∆𝗠 𝗦𝗣𝗖 』</a>
+            <div class="menu-toggle" id="mobile-menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="Home.html">Home</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="BookNow.html">BookNow</a></li>
+                <li><a href="Contact.html">About Us</a></li>
+                <li><a href="login.html" class="login-btn">Log In</a></li>
+                <li><a href="signup.html" class="signup-btn">Sign Up</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main>
+        <section class="reviews-section">
+            <h1 class="section-title">Client Testimonials</h1>
+            
+            <div class="average-rating" id="averageRating" style="text-align: center; margin-bottom: 2rem; font-size: 1.2rem;">
+                <p>Loading average rating...</p>
+            </div>
+            
+            <div class="reviews-container" id="reviewsContainer">
+                <p class="loading">Loading reviews...</p>
+            </div>
+            
+            <div style="text-align: center; margin: 2rem 0;">
+                <button id="loadMoreBtn" class="submit-btn" style="display: none; margin-right: 10px;">Load More Reviews</button>
+                <button id="showLessBtn" class="submit-btn" style="display: none; background-color: #777;">Show Fewer Reviews</button>
+            </div>
+            
+            <div class="review-form">
+                <h2 class="form-title">Share Your Experience</h2>
+                <form id="reviewForm">
+                    <div class="form-group">
+                        <label for="name">Your Name*</label>
+                        <input type="text" id="name" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Email (optional)</label>
+                        <input type="email" id="email">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="rating">Rating*</label>
+                        <select id="rating" required>
+                            <option value="">Select Rating</option>
+                            <option value="5">★★★★★ (5 Stars)</option>
+                            <option value="4">★★★★☆ (4 Stars)</option>
+                            <option value="3">★★★☆☆ (3 Stars)</option>
+                            <option value="2">★★☆☆☆ (2 Stars)</option>
+                            <option value="1">★☆☆☆☆ (1 Star)</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="service">Service Used*</label>
+                        <select id="service" required>
+                            <option value="">Select Service</option>
+                            <option value="Wedding Photography">Wedding Photography</option>
+                            <option value="Portrait Session">Portrait Session</option>
+                            <option value="Product Photography">Product Photography</option>
+                            <option value="Family Photoshoot">Family Photoshoot</option>
+                            <option value="Event Coverage">Event Coverage</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="review">Your Review*</label>
+                        <textarea id="review" required placeholder="Tell us about your experience..."></textarea>
+                    </div>
+                    
+                    <button type="submit" class="submit-btn">Submit Review</button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer section -->
+
+    <section class="footer-section" id="footer-section">
+        <div class="footer-container">
+    
+            <!-- Left: Company Info & Contact -->
+            <div class="footer-about" id="footer-about">
+                <h3 class="footer-title" id="footer-title">Team SPC</h3>
+                <p class="footer-description" id="footer-description">
+                    Capturing moments, crafting memories. Professional photography, videography, and event decoration.
+                </p>
+                <div class="footer-contact" id="footer-contact">
+                    <img src="https://cdn-icons-png.flaticon.com/512/724/724664.png" alt="Call Icon">
+                    <span><a href="tel:+919876543210">+91 98765 43210</a></span>
+                </div>
+            </div>
+    
+            <!-- Middle: Quick Links -->
+            <div class="footer-links" id="footer-links">
+                <h4>Quick Links</h4>
+                <ul class="footer-list" id="footer-list">
+                    <li><a href="#" id="home-link">Home</a></li>
+                    <li><a href="#" id="about-link">About</a></li>
+                    <li><a href="#" id="services-link">Services</a></li>
+                    <li><a href="#" id="contact-link">Contact</a></li>
+                </ul>
+            </div>
+    
+            <!-- Right: Social Media -->
+            <div class="footer-social" id="footer-social">
+                <h4>Follow Us</h4>
+                <div class="social-icons" id="social-icons">
+                    <a href="#" id="facebook-link"><img src="https://cdn-icons-png.flaticon.com/512/1384/1384053.png" alt="Facebook"></a>
+                    <a href="#" id="instagram-link"><img src="https://cdn-icons-png.flaticon.com/512/1384/1384063.png" alt="Instagram"></a>
+                    <a href="#" id="twitter-link"><img src="https://cdn-icons-png.flaticon.com/512/733/733635.png" alt="Twitter"></a>
+                    <a href="#" id="linkedin-link"><img src="https://cdn-icons-png.flaticon.com/512/145/145807.png" alt="LinkedIn"></a>
+                </div>
+            </div>
+    
+        </div>
+    
+        <!-- Copyright -->
+        <div class="footer-bottom" id="footer-bottom">
+            <p>&copy; 2025 Team SPC. All rights reserved.</p>
+        </div>
+    </section>
+
+    <script src="../js/testimonials.js"></script>
+    
+</body>
+</html>
