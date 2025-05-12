@@ -35,3 +35,9 @@ const observer = new IntersectionObserver((entries) => {
 teamCards.forEach(card => {
     observer.observe(card);
 });
+
+
+
+
+//for the review section
+

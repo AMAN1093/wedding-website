@@ -1,4 +1,5 @@
-// Firebase Configuration - Replace with your actual config
+
+        // Firebase Configuration - Replace with your actual config
 const firebaseConfig = {
     apiKey: "AIzaSyCVqccX7ErOA-TJPv4b2kLw76sDSUGtXQM",
     authDomain: "review-firebase--app.firebaseapp.com",
@@ -368,3 +369,5 @@ window.addEventListener('DOMContentLoaded', () => {
     document.getElementById('loadMoreBtn').addEventListener('click', loadMoreReviews);
     document.getElementById('showLessBtn').addEventListener('click', showLessReviews);
 });
+
+    
