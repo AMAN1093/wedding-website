@@ -1,5 +1,7 @@
 {
   "projects": {
-    "default": "shiny-portrait-click"
-  }
+    "default": "shiny-click-portrait"
+  },
+  "targets": {},
+  "etags": {}
 }
