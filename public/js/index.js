@@ -1,74 +1,78 @@
-// Firebase configuration
-const firebaseConfig = {
-    apiKey: "AIzaSyB4OUv-FrYtb2tKlIu9ZeGTHsI8xkb3K4o",
-    authDomain: "teamspc-6f85b.firebaseapp.com",
-    projectId: "teamspc-6f85b",
-    storageBucket: "teamspc-6f85b.firebasestorage.app",
-    messagingSenderId: "442886029783",
-    appId: "1:442886029783:web:98b521bcb16801ad584b92",
-    measurementId: "G-VHSBGHC0QC"
-  };
+//  toggle menu for the mobile phones
+const mobileMenu = document.getElementById('mobile-menu');
+const navLinks = document.querySelector('.nav-links');
 
-  // Initialize Firebase
-  firebase.initializeApp(firebaseConfig);
-  const db = firebase.firestore();  // Initialize Firestore
+mobileMenu.addEventListener('click', () => {
+    navLinks.classList.toggle('active');
+});
 
-  // DOM elements
-  const arrangementsForm = document.getElementById('arrangementsForm');
-  const arrangementOptions = document.querySelectorAll('.arrangement-option');
-  const seatingPreferenceInput = document.getElementById('seatingPreference');
 
-  // Seating arrangement selection
-  arrangementOptions.forEach(option => {
-    option.addEventListener('click', () => {
-      arrangementOptions.forEach(opt => opt.classList.remove('selected'));
-      option.classList.add('selected');
-      seatingPreferenceInput.value = option.getAttribute('data-value');
+// for the what we do 
+const imageContainer = document.querySelector(".photo-video-image img");
+ const imageSets = [
+    ["../assets/WWD1.jpg", "../assets/WWD2.jpg", "../assets/WWD3.jpg"],
+    ["../assets/pink1.jpg", "../assets/pink2.jpg", "../assets/pink3.jpg"]
+  ];
+
+  const containers = document.querySelectorAll(".photo-video-image img");
+
+  containers.forEach((img, index) => {
+    let currentImage = 0;
+    setInterval(() => {
+      currentImage = (currentImage + 1) % imageSets[index].length;
+      img.src = imageSets[index][currentImage];
+    }, 5000); // 5-second interval
+  });
+
+
+// functions for the book now button
+function bookNow() {
+    alert("Book your slot . Our team will contact you soon.");
+    window.location.href = "BookNow.html"; // Redirect to contact.html
+}
+
+
+// the photography and the videography service that we offers 
+
+function revealOnScroll() {
+    const elements = document.querySelectorAll('.photo-video-box');
+    const windowHeight = window.innerHeight;
+
+    elements.forEach(el => {
+        const positionFromTop = el.getBoundingClientRect().top;
+
+        if (positionFromTop - windowHeight <= -50) {
+            el.classList.add('show');
+        }
     });
-  });
+}
 
-  // Form submission
-  arrangementsForm.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    
-    const customerName = document.getElementById('customerName').value.trim();
-    const customerEmail = document.getElementById('customerEmail').value.trim();
-    const totalGuests = document.getElementById('totalGuests').value;
-    const seatingPreference = seatingPreferenceInput.value;
-    
-    // Validate required fields
-    if (!customerName || !customerEmail || !totalGuests || !seatingPreference) {
-      alert('Please fill in all required fields');
-      return;
-    }
+window.addEventListener('scroll', revealOnScroll);
+window.addEventListener('load', revealOnScroll);
 
-    // Validate email format
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(customerEmail)) {
-      alert('Please enter a valid email address');
-      return;
-    }
 
-    try {
-      // Save to Firestore
-      await db.collection('Wedding-Arrangement').add({
-        customerName: customerName,
-        customerEmail: customerEmail,
-        totalGuests: parseInt(totalGuests),
-        seatingPreference: seatingPreference,
-        specialRequests: document.getElementById('specialRequests').value.trim(),
-        submittedAt: firebase.firestore.FieldValue.serverTimestamp()
-      });
-      
-      // Success message
-      alert('Thank you for your arrangement preferences!');
-      
-      // Reset form
-      arrangementsForm.reset();
-      arrangementOptions.forEach(opt => opt.classList.remove('selected'));
-      seatingPreferenceInput.value = '';
-      
-    } catch (error) {
-      console.error('Full error details:', error);
-      alert(`Error details: ${error.message}`);
+// after the landing page the animation part of javascript is :
+
+
+function handleScrollAnimation() {
+    const textContent = document.querySelector(".text-content");
+    const imageContainer = document.querySelector(".image-container");
+    const section = document.querySelector(".team-section");
+
+    const sectionTop = section.getBoundingClientRect().top;
+    const windowHeight = window.innerHeight;
+
+    if (sectionTop < windowHeight - 100) { // Trigger before fully visible
+        textContent.classList.add("show");
+        imageContainer.classList.add("show");
     }
-  });
+}
+
+window.addEventListener("scroll", handleScrollAnimation);
+window.addEventListener("load", handleScrollAnimation); // Trigger on page load
+
+// about us
+
+
+
+
