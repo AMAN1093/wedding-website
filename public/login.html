@@ -1,105 +1,115 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Responsive Login Page</title>
-    <link rel="stylesheet" href="../public/css/login.css">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Responsive Login Page</title>
+        <link rel="stylesheet" href="../public/css/login.css">
 
-    <!-- Firebase App -->
-<script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
+        <!-- Firebase App -->
+        <script
+            src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
 
-<!-- Firebase Auth -->
-<script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-auth-compat.js"></script>
+        <!-- Firebase Auth -->
+        <script
+            src="https://www.gstatic.com/firebasejs/9.22.2/firebase-auth-compat.js"></script>
 
-<!-- Firebase Firestore -->
-<script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore-compat.js"></script>
-    
-</head>
-<body>
-    <nav class="navbar">
-        <div class="container">
-            <a href="Home.html" class="logo">『 𝗧𝗘∆𝗠 𝗦𝗣𝗖 』</a>
-            <div class="menu-toggle" id="mobile-menu">
-                <span class="bar"></span>
-                <span class="bar"></span>
-                <span class="bar"></span>
+        <!-- Firebase Firestore -->
+        <script
+            src="https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore-compat.js"></script>
+
+    </head>
+    <body>
+        <nav class="navbar">
+            <div class="container">
+                <a href="Home.html" class="logo">『 𝗧𝗘∆𝗠 𝗦𝗣𝗖 』</a>
+                <div class="menu-toggle" id="mobile-menu">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="BookNow.html">BookNow</a></li>
+                    <li><a href="Contact.html">About Us</a></li>
+                    <li><a href="login.html" class="login-btn">LogIn</a></li>
+                    <li><a href="signup.html" class="signup-btn">SignUp</a></li>
+                </ul>
             </div>
-            <ul class="nav-links">
-                <li><a href="Home.html">Home</a></li>
-                <li><a href="services.html">Services</a></li>
-                <li><a href="BookNow.html">BookNow</a></li>
-                <li><a href="Contact.html">About Us</a></li>
-                <li><a href="login.html" class="login-btn">Log In</a></li>
-                <li><a href="signup.html" class="signup-btn">Sign Up</a></li>
-            </ul>
-        </div>
-    </nav>
+        </nav>
 
-    <!-- Main Section -->
-    <section class="login-section" id="loginSection">
-        <!-- Left Panel - Image Slider -->
-        <div class="left-panel">
-            <div class="slider">
-                <div class="slide">
-                    <img src="../assets/login1.JPG" alt="Photo 1">
-                    <div class="slide-content">『 𝗧𝗘∆𝗠 𝗦𝗣𝗖 』</div>
+        <!-- Main Section -->
+        <section class="login-section" id="loginSection">
+            <!-- Left Panel - Image Slider -->
+            <div class="left-panel">
+                <div class="slider">
+                    <div class="slide">
+                        <img src="../assets/login1.JPG" alt="Photo 1">
+                        <div class="slide-content">『 𝗧𝗘∆𝗠 𝗦𝗣𝗖 』</div>
+                    </div>
+                    <div class="slide">
+                        <img src="../assets/login2.JPG" alt="Photo 2">
+                        <div class="slide-content">『 𝗧𝗘∆𝗠 𝗦𝗣𝗖 』</div>
+                    </div>
+                    <div class="slide">
+                        <img src="../assets/login3.JPG" alt="Photo 3">
+                        <div class="slide-content">『 𝗧𝗘∆𝗠 𝗦𝗣𝗖 』</div>
+                    </div>
+                    <div class="slide">
+                        <img src="../assets/login4.JPG" alt="Photo 4">
+                        <div class="slide-content">『 𝗧𝗘∆𝗠 𝗦𝗣𝗖 』</div>
+                    </div>
+                    <div class="slide">
+                        <img src="../assets/login5.JPG" alt="Photo 5">
+                        <div class="slide-content">『 𝗧𝗘∆𝗠 𝗦𝗣𝗖 』</div>
+                    </div>
                 </div>
-                <div class="slide">
-                    <img src="../assets/login2.JPG" alt="Photo 2">
-                    <div class="slide-content">『 𝗧𝗘∆𝗠 𝗦𝗣𝗖 』</div>
-                </div>
-                <div class="slide">
-                    <img src="../assets/login3.JPG" alt="Photo 3">
-                    <div class="slide-content">『 𝗧𝗘∆𝗠 𝗦𝗣𝗖 』</div>
-                </div>
-                <div class="slide">
-                    <img src="../assets/login4.JPG" alt="Photo 4">
-                    <div class="slide-content">『 𝗧𝗘∆𝗠 𝗦𝗣𝗖 』</div>
-                </div>
-                <div class="slide">
-                    <img src="../assets/login5.JPG" alt="Photo 5">
-                    <div class="slide-content">『 𝗧𝗘∆𝗠 𝗦𝗣𝗖 』</div>
+                <!-- Navigation Buttons -->
+                <div class="navigation">
+                    <button id="prevBtn">&#10094;</button>
+                    <button id="nextBtn">&#10095;</button>
                 </div>
             </div>
-            <!-- Navigation Buttons -->
-            <div class="navigation">
-                <button id="prevBtn">&#10094;</button>
-                <button id="nextBtn">&#10095;</button>
-            </div>
-        </div>
 
-        <!-- Right Panel - Sign-In Form -->
-        <div class="right-panel">
-            <h2><u>Log In</u></h2>
-            <div class="login-options">
-                <label for="email">Email:</label>
-                <input type="email" id="email" placeholder="Email">
-                <label for="password">Password:</label>
-                <input type="password" id="password" placeholder="Password">
-                <button>Log In</button>
-                <!-- <div class="member-login">
+            <!-- Right Panel - Sign-In Form -->
+            <div class="right-panel">
+                <h2><u>Log In</u></h2>
+                <div class="login-options">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" placeholder="Email">
+                    <label for="password">Password:</label>
+                    <input type="password" id="password" placeholder="Password">
+                    <button>Log In</button>
+                    <!-- <div class="member-login">
                     <a href="#">Member Login</a>
                 </div> -->
-                <p>or login with </p>
-                <!-- Social Login Icons -->
-                <div class="social-login">
-                    <img src="https://img.icons8.com/color/48/google-logo.png" alt="Google">
-                    <img src="https://img.icons8.com/color/48/facebook-new.png" alt="Facebook">
-                    <img src="https://img.icons8.com/color/48/linkedin-circled.png" alt="LinkedIn">
-                    <img src="https://img.icons8.com/color/48/twitter-circled.png" alt="Twitter">
+                    <p>or login with </p>
+                    <!-- Social Login Icons -->
+                    <div class="social-login">
+                        <img
+                            src="https://img.icons8.com/color/48/google-logo.png"
+                            alt="Google">
+                        <img
+                            src="https://img.icons8.com/color/48/facebook-new.png"
+                            alt="Facebook">
+                        <img
+                            src="https://img.icons8.com/color/48/linkedin-circled.png"
+                            alt="LinkedIn">
+                        <img
+                            src="https://img.icons8.com/color/48/twitter-circled.png"
+                            alt="Twitter">
+                    </div>
+                </div>
+                <div class="sign-up">
+                    Don't have an account? <a href="signup.html">Sign Up</a>
                 </div>
             </div>
-            <div class="sign-up">
-                Don't have an account? <a href="signup.html">Sign Up</a>
-            </div>
-        </div>
-    </section>
+        </section>
 
+        <!-- For the login authentication -->
 
-    <!-- For the login authentication -->
-
-    <script>
+        <script>
         const firebaseConfig = {
             apiKey: "AIzaSyB4OUv-FrYtb2tKlIu9ZeGTHsI8xkb3K4o",
             authDomain: "teamspc-6f85b.firebaseapp.com",
@@ -153,6 +163,6 @@
                 });
         });
       </script>
-    <script src="../public/js/login.js"></script>
-</body>
+        <script src="../public/js/login.js"></script>
+    </body>
 </html>
