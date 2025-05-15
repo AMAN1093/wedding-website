@@ -1,200 +1,1073 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+  <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TeamSPC - Landing Page</title>
-    <link rel="stylesheet" href="index.css">
-</head>
-<body>
+    
+  </head>
+  <style>
+    .navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 60px;
+    background-color: #1c1c1c;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+}
+
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+}
+
+.logo {
+    color: white;
+    font-size: 1.5rem;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+}
+
+.nav-links li {
+    margin-left: 20px;
+}
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    font-size: 1rem;
+    transition: color 0.3s;
+    padding: 8px 12px;
+    display: block;
+}
+
+.nav-links a:hover {
+    color: #ff6600;
+}
+
+.login-btn, .signup-btn {
+    padding: 8px 15px;
+    border-radius: 5px;
+}
+
+.login-btn {
+    background-color: transparent;
+    border: 1px solid white;
+}
+
+.signup-btn {
+    background-color: #ff6600;
+    border: 1px solid #ff6600;
+}
+
+.signup-btn:hover {
+    background-color: #cc5500;
+    border-color: #cc5500;
+}
+
+/* Mobile Menu Toggle */
+.menu-toggle {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+    width: 30px;
+    height: 25px;
+    justify-content: space-between;
+    position: relative;
+    z-index: 2;
+}
+
+.bar {
+    width: 100%;
+    height: 3px;
+    background-color: white;
+    transition: all 0.3s ease;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    /* Mobile Menu Styles */
+    .menu-toggle {
+        display: flex;
+    }
+    
+    .nav-links {
+        position: fixed;
+        top: 60px;
+        left: -100%;
+        width: 100%;
+        height: calc(100vh - 60px);
+        background-color: #333;
+        flex-direction: column;
+        align-items: center;
+        padding: 40px 0;
+        transition: all 0.5s ease;
+    }
+    
+    .nav-links.active {
+        left: 0;
+    }
+    
+    .nav-links li {
+        margin: 15px 0;
+        width: 100%;
+        text-align: center;
+    }
+    
+    .nav-links a {
+        padding: 15px;
+        width: 100%;
+    }
+    
+    /* Menu Toggle Animation */
+    .menu-toggle.active .bar:nth-child(1) {
+        transform: translateY(10px) rotate(45deg);
+    }
+    
+    .menu-toggle.active .bar:nth-child(2) {
+        opacity: 0;
+    }
+    
+    .menu-toggle.active .bar:nth-child(3) {
+        transform: translateY(-10px) rotate(-45deg);
+    }
+}
+/* corosollllll */
+
+
+/* Hero Section */
+
+.hero {
+    position: relative;
+    width: 100%;
+    height: 100vh; /* Full screen */
+    display: flex;
+    align-items: center; /* Center vertically */
+    justify-content: center; /* Center horizontally */
+    text-align: center;
+    overflow: hidden;
+    padding-top: 60px;
+}
+
+/* Move content slightly downward */
+.hero-content {
+    transform: translateY(50px); /* Adjust this value to move down */
+}
+
+
+
+.hero-bg {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1;
+}
+
+/* Hero Content */
+.hero-content {
+    position: relative;
+    z-index: 1;
+    width: 80%;
+    max-width: 600px;
+    color: white;
+}
+
+/* Text Styling */
+.hero h1 {
+    font-size: 70px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.subheading {
+    font-size: 20px;
+    margin-top: 10px;
+}
+
+.description {
+    font-size: 18px;
+    margin-top: 5px;
+}
+
+/* Button Styling */
+.btn {
+    display: inline-block;
+    background-color: #00ff99;
+    color: black;
+    font-size: 18px;
+    font-weight: bold;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: 0.3s;
+}
+
+.btn:hover {
+    background-color: #00cc77;
+}
+
+/* the photographt and the videography service that we offers */
+/* 
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+} */
+
+
+
+.photo-video-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 1100px;
+    margin: auto;
+}
+
+.photo-video-section h2 {
+    font-size: 38px;
+    font-weight: bold;
+    text-align: center;
+    padding-top: 50px;
+    margin-bottom: 40px;
+    color: #000000;
+    
+    
+}
+
+.photo-video-box {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom:30px;
+    width: 100%;
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.photo-video-box:nth-child(even) {
+    flex-direction: row-reverse;
+}
+
+.photo-video-text {
+    width: 45%;
+}
+
+.photo-video-text h3 {
+    font-size: 22px;
+    font-weight: 600;
+    margin-bottom: 10px;
+    color: #F4D03F;
+}
+
+.photo-video-text p {
+    font-size: 16px;
+    color: #E0E0E0;
+}
+
+.photo-video-image {
+    width: 45%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.photo-video-image img {
+    width: 100%;
+    max-width: 300px;
+    border-radius: 10%;
+    object-fit: cover;
+    transition: transform 0.3s ease-in-out;
+    transform: rotate(6deg);
+}
+.photo-video-image video {
+    width: 100%;
+    max-width: 300px;
+    border-radius: 10%;
+    object-fit: cover;
+    transition: transform 0.3s ease-in-out;
+    transform: rotate(-95deg);
+}
+
+
+.photo-video-image img:hover {
+    transform: scale(1.05);
+}
+
+.photo-video-box:nth-child(odd) .photo-video-image {
+    transform: translateY(-20px);
+}
+
+.photo-video-box:nth-child(even) .photo-video-image {
+    transform: translateY(20px);
+}
+
+/* Scroll Animation */
+.photo-video-box.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+@media (max-width: 768px) {
+    .photo-video-box {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .photo-video-box:nth-child(even) {
+        flex-direction: column;
+    }
+
+    .photo-video-text, .photo-video-image {
+        width: 100%;
+    }
+
+    .photo-video-box:nth-child(odd) .photo-video-image,
+    .photo-video-box:nth-child(even) .photo-video-image {
+        transform: translateY(0);
+    }
+}
+
+/*  after the landing page image----  */
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+.team-section {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    padding: 80px;
+    background-color: #fef6f2;
+    background: linear-gradient(to right, #0f2027, #203a43, #2c5364); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    gap: 30px;
+    overflow: hidden;
+}
+.text-content, .image-container {
+    opacity: 0;
+    transform: translateX(-100%);
+    transition: opacity 1s ease-in-out, transform 1s ease-in-out;
+}
+.image-container {
+    transform: translateX(100%);
+}
+.text-content.show {
+    opacity: 1;
+    transform: translateX(0);
+}
+.image-container.show {
+    opacity: 1;
+    transform: translateX(0);
+}
+.text-content {
+    flex: 1;
+    min-width: 350px;
+    max-width: 750px;
+    padding: 40px;
+    background: radial-gradient(black, transparent);
+    border-radius: 30px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+.text-content h2 {
+    font-size: 36px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #333;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-align: center;
+}
+.text-content p {
+    font-size: 18px;
+    line-height: 1.8;
+    color: #444;
+    font-style: italic;
+    margin-bottom: 15px;
+    text-align: center;
+}
+.buttons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 20px;
+}
+.buttons a {
+    text-decoration: none;
+    padding: 12px 24px;
+    font-size: 18px;
+    border-radius: 30px;
+    background-color: #ff6363;
+    color: white;
+    font-weight: bold;
+    transition: background 0.3s ease-in-out;
+}
+.buttons a:hover {
+    background-color: #e04848;
+}
+.image-container {
+    flex: 1;
+    min-width: 350px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    width: 450px;
+    height: 420px;
+    padding: 2px 2px;
+    border-radius: 30px;
+    overflow: hidden;
+    background-color: #ddd;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+.image-container img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    border-radius: 30px;
+    transition: transform 0.3s ease-in-out;
+}
+.image-container:hover img {
+    transform: scale(1.05);
+}
+.badge {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background-color: #ff6363;
+    color: white;
+    padding: 12px 18px;
+    font-size: 18px;
+    border-radius: 50%;
+    font-weight: bold;
+}
+@media (max-width: 768px) {
+    .team-section {
+        flex-direction: column;
+        text-align: center;
+    }
+    .image-container {
+        width: 350px;
+        height: auto;
+    }
+}
+
+
+
+/* the services that the shiny portrait gives you */
+
+
+/*-- in div portion the title*/
+.card-heading {
+    text-align: center;
+    font-weight: bold;
+    font-size: 38px;
+    color: #000000;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+   background: linear-gradient(to right, #0f2027, #203a43, #2c5364); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+.card-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 80vh;
+    
+}
+
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    max-width: 1400px;
+    width: 100%;
+    padding: 20px;
+}
+
+.card-item {
+    position: relative;
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.card-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease-in-out;
+}
+
+.card-item:hover img {
+    transform: scale(1.1);
+}
+
+.card-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+    transition: background 0.3s ease-in-out;
+}
+
+.card-item:hover .card-overlay {
+    background: rgba(0, 0, 0, 0.7);
+}
+
+.tools-section {
+    text-align: center;
+    padding: 30px;
+    background: linear-gradient(to right, #0f2027, #203a43, #2c5364); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 1380px;
+    margin: 0 auto;
+    height: 300px;
+    margin-bottom: 100px;
+}
+
+.tools-section h2 {
+    font-size: 38px;
+    margin-bottom: 10px;
+}/* Clients (Tools) Logo Section */
+.tools-list {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 80px;
+    margin: 20px 0;
+}
+
+.tool {
+    position: relative;
+}
+
+.tools-list img {
+    width: 80px;
+    height: 80px;
+    transition: transform 0.3s ease;
+    cursor: pointer;
+}
+
+.tools-list img:hover {
+    transform: scale(1.1);
+}
+
+/* Tooltip Styling */
+.tool::after {
+    content: attr(data-name);
+    position: absolute;
+    bottom: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0, 0, 0, 0.7);
+    color: white;
+    padding: 5px 10px;
+    font-size: 12px;
+    border-radius: 5px;
+    white-space: nowrap;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+}
+
+.tool:hover::after {
+    opacity: 1;
+}
+
+@media (max-width: 600px) {
+    .tools-list img {
+        width: 50px;
+        height: 50px;
+    }
+}
+
+
+/*  the content of the about us */
+/* Footer Section Styling */
+
+
+
+.footer-section {
+    background-color: #1c1c1c;
+    color: white;
+    padding: 40px 20px;
+    text-align: center;
+}
+
+.footer-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    max-width: 1100px;
+    margin: auto;
+}
+
+.footer-about, .footer-links, .footer-social {
+    flex: 1;
+    margin: 10px;
+    min-width: 250px;
+}
+
+.footer-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #f8b400;
+}
+
+.footer-description {
+    font-size: 14px;
+    color: #bbb;
+    line-height: 1.6;
+    margin-bottom: 15px;
+}
+
+.footer-contact {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.footer-contact img {
+    width: 20px;
+}
+
+.footer-contact a {
+    color: #f8b400;
+    font-size: 16px;
+    text-decoration: none;
+}
+
+.footer-contact a:hover {
+    text-decoration: underline;
+}
+
+.footer-links h4, .footer-social h4 {
+    font-size: 18px;
+    margin-bottom: 10px;
+    color: #f8b400;
+}
+
+.footer-list {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-list li {
+    margin-bottom: 8px;
+}
+
+.footer-list a {
+    text-decoration: none;
+    color: #bbb;
+    transition: color 0.3s;
+}
+
+.footer-list a:hover {
+    color: #f8b400;
+}
+
+/* Social Media Icons */
+.social-icons {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 10px;
+}
+
+.social-icons a {
+    display: inline-block;
+}
+
+.social-icons img {
+    width: 32px;
+    height: 32px;
+    transition: transform 0.3s;
+}
+
+.social-icons img:hover {
+    transform: scale(1.2);
+}
+
+/* Bottom Footer */
+.footer-bottom {
+    margin-top: 20px;
+    font-size: 14px;
+    color: #aaa;
+    padding-top: 15px;
+    border-top: 1px solid #444;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .footer-container {
+        flex-direction: column;
+        text-align: center;
+    }
+}
+
+
+.tools-section p {
+    font-size: 14px;
+    color: #555;
+}
+  </style>
+  <body>
     <nav class="navbar">
-        <div class="container">
-            <a href="index.html" class="logo">『 𝗧𝗘∆𝗠 𝗦𝗣𝗖 』</a>
-            <div class="menu-toggle" id="mobile-menu">
-                <span class="bar"></span>
-                <span class="bar"></span>
-                <span class="bar"></span>
-            </div>
-            <ul class="nav-links">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="Services.html">Services</a></li>
-                <li><a href="BookNow.html">BookNow</a></li>
-                <li><a href="Contact.html">About Us</a></li>
-                <li><a href="login.html" class="login-btn">Log In</a></li>
-                <li><a href="signup.html" class="signup-btn">Sign Up</a></li>
-            </ul>
+      <div class="container">
+        <a href="index.html" class="logo">『 𝗧𝗘∆𝗠 𝗦𝗣𝗖 』</a>
+        <div class="menu-toggle" id="mobile-menu">
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
         </div>
+        <ul class="nav-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="Services.html">Services</a></li>
+          <li><a href="BookNow.html">BookNow</a></li>
+          <li><a href="Contact.html">About Us</a></li>
+          <li><a href="login.html" class="login-btn">Log In</a></li>
+          <li><a href="signup.html" class="signup-btn">Sign Up</a></li>
+        </ul>
+      </div>
     </nav>
 
     <!-- Hero Section -->
     <section class="hero">
-        <img src="hero2.jpeg" alt="Background Image" class="hero-bg">
-        <div class="hero-content">
-            <h1>Welcome To teamSPC</h1>
-            <p class="subheading">Elevate Your Experience with Professional Solutions</p>
-            <p class="description">Expert Services, Seamless Execution</p>
-            <button class="btn" onclick="bookNow()">Book Now</button>
-        </div>
+      <img src="hero2.jpeg" alt="Background Image" class="hero-bg">
+      <div class="hero-content">
+        <h1>Welcome To teamSPC</h1>
+        <p class="subheading">Elevate Your Experience with Professional
+          Solutions</p>
+        <p class="description">Expert Services, Seamless Execution</p>
+        <button class="btn" onclick="bookNow()">Book Now</button>
+      </div>
     </section>
 
     <!-- Photography and Videography Section -->
     <section class="photo-video-section">
-        <h2><u>We are engaged in...</u></h2>
+      <h2><u>We are engaged in...</u></h2>
 
-        <div class="photo-video-box">
-            <div class="photo-video-image">
-                <img src="assets/WWD1.jpg" alt="Event Photography">
-            </div>
-            <div class="photo-video-text">
-                <h3>Event Photography</h3>
-                <p>Every event tells a story, and we're here to help you remember yours just the way it felt. Our Event Photography isn't just about taking pictures—it's about capturing the emotions behind them. From warm hugs and happy tears to bursts of laughter and quiet moments of joy, we focus on the little things that make your celebration truly yours. With a friendly approach and a creative eye, we make sure each memory is preserved beautifully—so you can relive it, smile by smile.</p>
-            </div>
+      <div class="photo-video-box">
+        <div class="photo-video-image">
+          <img src="WWD1.jpg" alt="Event Photography">
         </div>
+        <div class="photo-video-text">
+          <h3>Event Photography</h3>
+          <p>Every event tells a story, and we're here to help you remember
+            yours just the way it felt. Our Event Photography isn't just about
+            taking pictures—it's about capturing the emotions behind them. From
+            warm hugs and happy tears to bursts of laughter and quiet moments of
+            joy, we focus on the little things that make your celebration truly
+            yours. With a friendly approach and a creative eye, we make sure
+            each memory is preserved beautifully—so you can relive it, smile by
+            smile.</p>
+        </div>
+      </div>
 
-        <div class="photo-video-box">
-            <div class="photo-video-image">
-                <video autoplay muted loop playsinline>
-                    <source src="assets/videography2.mp4" type="video/mp4">
-                    Your browser does not support the video tag.
-                </video>
-            </div>
-            <div class="photo-video-text">
-                <h3>Cinematic Videography</h3>
-                <p>Cinematic videography is more than just recording moments—it's about capturing emotions, storytelling, and turning real-life events into visually stunning, movie-like experiences. It uses professional camera work, thoughtful lighting, music, and editing techniques to create a dramatic, polished look that feels both personal and artistic.</p>
-                <p>Whether it's a wedding, celebration, or a brand film, our cinematic approach ensures that your story is told in the most impactful way. We focus on the little details—glances, laughter, movement—and weave them together into a narrative that touches hearts. With us, your memories are not just documented, they're transformed into timeless films.</p>
-            </div>
+      <div class="photo-video-box">
+        <div class="photo-video-image">
+          <video autoplay muted loop playsinline>
+            <source src="videography2.MP4" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
         </div>
+        <div class="photo-video-text">
+          <h3>Cinematic Videography</h3>
+          <p>Cinematic videography is more than just recording moments—it's
+            about capturing emotions, storytelling, and turning real-life events
+            into visually stunning, movie-like experiences. It uses professional
+            camera work, thoughtful lighting, music, and editing techniques to
+            create a dramatic, polished look that feels both personal and
+            artistic.</p>
+          <p>Whether it's a wedding, celebration, or a brand film, our cinematic
+            approach ensures that your story is told in the most impactful way.
+            We focus on the little details—glances, laughter, movement—and weave
+            them together into a narrative that touches hearts. With us, your
+            memories are not just documented, they're transformed into timeless
+            films.</p>
+        </div>
+      </div>
 
-        <div class="photo-video-box">
-            <div class="photo-video-image">
-                <img src="assets/pink2.jpg" alt="Creative Direction">
-            </div>
-            <div class="photo-video-text">
-                <h3>Creative Direction</h3>
-                <p>With our creative direction in photography, we don't just capture moments — we craft them. From choosing the perfect angles and lighting setups to guiding poses and positioning, we ensure that every shot tells a powerful story. Whether it's a wide-angle scene that sets the atmosphere or a close-up that captures raw emotion, we focus on the smallest details — like hand gestures, eye lines, and natural light play — to bring depth and artistry to each frame. Our goal is to turn your vision into vivid, emotionally rich images that feel both authentic and unforgettable.</p>
-            </div>
+      <div class="photo-video-box">
+        <div class="photo-video-image">
+          <img src="pink1.JPG" alt="Creative Direction">
         </div>
+        <div class="photo-video-text">
+          <h3>Creative Direction</h3>
+          <p>With our creative direction in photography, we don't just capture
+            moments — we craft them. From choosing the perfect angles and
+            lighting setups to guiding poses and positioning, we ensure that
+            every shot tells a powerful story. Whether it's a wide-angle scene
+            that sets the atmosphere or a close-up that captures raw emotion, we
+            focus on the smallest details — like hand gestures, eye lines, and
+            natural light play — to bring depth and artistry to each frame. Our
+            goal is to turn your vision into vivid, emotionally rich images that
+            feel both authentic and unforgettable.</p>
+        </div>
+      </div>
     </section>
 
     <!-- Team Section -->
     <section class="team-section">
-        <div class="text-content">
-            <h2>Get to know our team</h2>
-            <p>At Event Organiser, we understand the significance of storytelling through photography and cinematic videography. Our dedicated team is passionate about creating captivating visuals that reflect your unique experiences.</p>
-            <p>Whether it's a wedding, corporate event, or a personal milestone, we are here to turn your vision into stunning memories. Experience the artistry of professional photography and videography with Event Organiser.</p>
-            <div class="buttons">
-                <a href="Services.html">Our Services</a>
-                <a href="Contact.html">About Us</a>
-            </div>
+      <div class="text-content">
+        <h2>Get to know our team</h2>
+        <p>At Event Organiser, we understand the significance of storytelling
+          through photography and cinematic videography. Our dedicated team is
+          passionate about creating captivating visuals that reflect your unique
+          experiences.</p>
+        <p>Whether it's a wedding, corporate event, or a personal milestone, we
+          are here to turn your vision into stunning memories. Experience the
+          artistry of professional photography and videography with Event
+          Organiser.</p>
+        <div class="buttons">
+          <a href="Services.html">Our Services</a>
+          <a href="Contact.html">About Us</a>
         </div>
-        <div class="image-container">
-            <img src="assets/camerman.jpg" alt="Photography Scene">
-            <div class="badge">★</div>
-        </div>
+      </div>
+      <div class="image-container">
+        <img src="camerman.jpg" alt="Photography Scene">
+        <div class="badge">★</div>
+      </div>
     </section>
 
     <!-- Gallery Section -->
     <div class="card-heading"><u>Some of our galleries interactions</u></div>
     <section class="card-section">
-        <div class="card-grid">
-            <div class="card-item">
-                <img src="wedding.JPG" alt="Wedding Events">
-                <div class="card-overlay">WEDDING EVENTS</div>
-            </div>
-            <div class="card-item">
-                <img src="../public/assets/birthday.jpg" alt="Birthday Party">
-                <div class="card-overlay">BIRTHDAY PARTY</div>
-            </div>
-            <div class="card-item">
-                <img src="../public/assets/Branding.jpg" alt="Corporate Events">
-                <div class="card-overlay">BRANDING</div>
-            </div>
-            <div class="card-item">
-                <img src="../public/assets/kitty.jpg" alt="Kitty Party">
-                <div class="card-overlay">KITTY PARTY</div>
-            </div>
-            <div class="card-item">
-                <img src="../public/assets/holi.jpg" alt="Other Events">
-                <div class="card-overlay">OTHER EVENTS</div>
-            </div>
-            <div class="card-item">
-                <img src="../public/assets/scenery.jpg" alt="Decor Samples">
-                <div class="card-overlay">Scenery</div>
-            </div>
-            <div class="card-item">
-                <img src="../public/assets/collab.jpg" alt="Decor Samples">
-                <div class="card-overlay">collaboration</div>
-            </div>
-            <div class="card-item">
-                <img src="../public/assets/couple.jpg" alt="Decor Samples">
-                <div class="card-overlay">Couple shoot</div>
-            </div>
+      <div class="card-grid">
+        <div class="card-item">
+          <img src="https://th.bing.com/th/id/OIP.sHjHAKufcrINdQirP6w3wgHaLH?w=204&h=306&c=7&r=0&o=5&cb=iwc2&dpr=1.3&pid=1.7" alt="Wedding Events">
+          <div class="card-overlay">WEDDING EVENTS</div>
         </div>
+        <div class="card-item">
+          <img src="https://bangalorephotographers.in/images/gallery/Birthday-Photoshoot.jpg" alt="Birthday Party">
+          <div class="card-overlay">BIRTHDAY PARTY</div>
+        </div>
+        <div class="card-item">
+          <img src="https://www.fotovalley.com/wp-content/uploads/2020/05/Product-Photography-Ideas-to-Help-You-Sell-More.jpg" alt="Corporate Events">
+          <div class="card-overlay">BRANDING</div>
+        </div>
+        <div class="card-item">
+          <img src="https://s3.amazonaws.com/a.storyblok.com/f/116532/1080x908/745b2ff867/the-penthouse-dubai.webp" alt="Kitty Party">
+          <div class="card-overlay">KITTY PARTY</div>
+        </div>
+        <div class="card-item">
+          <img src="https://static.toiimg.com/photo/msid-94322394,width-96,height-65.cms" alt="Other Events">
+          <div class="card-overlay">OTHER EVENTS</div>
+        </div>
+        <div class="card-item">
+          <img src="https://i.pinimg.com/originals/ce/cc/0f/cecc0fc21fb49484dc21d0632e1b20ad.jpg" alt="Decor Samples">
+          <div class="card-overlay">Scenery</div>
+        </div>
+        <div class="card-item">
+          <img src="https://cdn.kamatharjun.com/wp-content/uploads/2021/08/Indian-Wedding-Photography-30.jpeg" alt="Decor Samples">
+          <div class="card-overlay">collaboration</div>
+        </div>
+        <div class="card-item">
+          <img src=" https://i.pinimg.com/564x/9c/00/61/9c00616269b46096c877210e7403747c.jpg" alt="Decor Samples">
+          <div class="card-overlay">Couple shoot</div>
+        </div>
+      </div>
     </section>
 
     <!-- Tools Section -->
     <section class="tools-section">
-        <h2>Tools That We Use</h2>
-        <p>We have been working with some of the top video editing software providers</p>
-        <div class="tools-list">
-            <div class="tool" data-name="Adobe After Effects">
-                <img src="assets/afterEffects.png" alt="Adobe After Effects">
-            </div>
-            <div class="tool" data-name="Adobe Premiere Pro">
-                <img src="assets/Adobe-Premiere.png" alt="Adobe Premiere Pro">
-            </div>
-            <div class="tool" data-name="Adobe Photoshop">
-                <img src="assets/photoshop.png" alt="Adobe Photoshop">
-            </div>
-            <div class="tool" data-name="Filmora">
-                <img src="assets/filmora-logo-icon.png" alt="Filmora">
-            </div>
-            <div class="tool" data-name="DaVinci Resolve 19">
-                <img src="assets/blackmagic-design-logo.png" alt="DaVinci Resolve 19">
-            </div>
-            <div class="tool" data-name="Blender">
-                <img src="assets/blender_logo.png" alt="Blender">
-            </div>
+      <h2>Tools That We Use</h2>
+      <p>We have been working with some of the top video editing software
+        providers</p>
+      <div class="tools-list">
+        <div class="tool" data-name="Adobe After Effects">
+          <img src="../assets/afterEffects.png" alt="Adobe After Effects">
         </div>
+        <div class="tool" data-name="Adobe Premiere Pro">
+          <img src="../assets/Adobe-Premiere.png" alt="Adobe Premiere Pro">
+        </div>
+        <div class="tool" data-name="Adobe Photoshop">
+          <img src="../assets/photoshop.png" alt="Adobe Photoshop">
+        </div>
+        <div class="tool" data-name="Filmora">
+          <img src="../assets/filmora-logo-icon.png" alt="Filmora">
+        </div>
+        <div class="tool" data-name="DaVinci Resolve 19">
+          <img src="../assets/blackmagic-design-logo.png" alt="DaVinci Resolve 19">
+        </div>
+        <div class="tool" data-name="Blender">
+          <img src="../assets/blender_logo.png" alt="Blender">
+        </div>
+      </div>
     </section>
 
     <!-- Footer Section -->
     <section class="footer-section">
-        <div class="footer-container">
-            <div class="footer-about">
-                <h3 class="footer-title">Team SPC</h3>
-                <p class="footer-description">
-                    Capturing moments, crafting memories. Professional photography, videography, and event decoration.
-                </p>
-                <div class="footer-contact">
-                    <img src="https://cdn-icons-png.flaticon.com/512/724/724664.png" alt="Call Icon">
-                    <span><a href="tel:+919876543210">+91 98765 43210</a></span>
-                </div>
-            </div>
-            <div class="footer-links">
-                <h4>Quick Links</h4>
-                <ul class="footer-list">
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="Contact.html">About</a></li>
-                    <li><a href="Services.html">Services</a></li>
-                    <li><a href="Contact.html">Contact</a></li>
-                </ul>
-            </div>
-            <div class="footer-social">
-                <h4>Follow Us</h4>
-                <div class="social-icons">
-                    <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/1384/1384053.png" alt="Facebook"></a>
-                    <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/1384/1384063.png" alt="Instagram"></a>
-                    <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/733/733635.png" alt="Twitter"></a>
-                    <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/145/145807.png" alt="LinkedIn"></a>
-                </div>
-            </div>
+      <div class="footer-container">
+        <div class="footer-about">
+          <h3 class="footer-title">Team SPC</h3>
+          <p class="footer-description">
+            Capturing moments, crafting memories. Professional photography,
+            videography, and event decoration.
+          </p>
+          <div class="footer-contact">
+            <img src="https://cdn-icons-png.flaticon.com/512/724/724664.png"
+              alt="Call Icon">
+            <span><a href="tel:+919876543210">+91 98765 43210</a></span>
+          </div>
         </div>
-        <div class="footer-bottom">
-            <p>&copy; 2025 Team SPC. All rights reserved.</p>
+        <div class="footer-links">
+          <h4>Quick Links</h4>
+          <ul class="footer-list">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="Contact.html">About</a></li>
+            <li><a href="Services.html">Services</a></li>
+            <li><a href="Contact.html">Contact</a></li>
+          </ul>
         </div>
+        <div class="footer-social">
+          <h4>Follow Us</h4>
+          <div class="social-icons">
+            <a href="#"><img
+                src="https://cdn-icons-png.flaticon.com/512/1384/1384053.png"
+                alt="Facebook"></a>
+            <a href="#"><img
+                src="https://cdn-icons-png.flaticon.com/512/1384/1384063.png"
+                alt="Instagram"></a>
+            <a href="#"><img
+                src="https://cdn-icons-png.flaticon.com/512/733/733635.png"
+                alt="Twitter"></a>
+            <a href="#"><img
+                src="https://cdn-icons-png.flaticon.com/512/145/145807.png"
+                alt="LinkedIn"></a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2025 Team SPC. All rights reserved.</p>
+      </div>
     </section>
 
-    <script src="../public/js/index.js"></script>
-</body>
+    <script>
+      //  toggle menu for the mobile phones
+const mobileMenu = document.getElementById('mobile-menu');
+const navLinks = document.querySelector('.nav-links');
+
+mobileMenu.addEventListener('click', () => {
+    navLinks.classList.toggle('active');
+});
+
+
+// for the what we do 
+const imageContainer = document.querySelector(".photo-video-image img");
+ const imageSets = [
+    ["WWD1.jpg", "WWD2.jpg", "WWD3.jpg"],
+    ["pink1.JPG", "pink2.JPG", "pink3.JPG"]
+  ];
+
+  const containers = document.querySelectorAll(".photo-video-image img");
+
+  containers.forEach((img, index) => {
+    let currentImage = 0;
+    setInterval(() => {
+      currentImage = (currentImage + 1) % imageSets[index].length;
+      img.src = imageSets[index][currentImage];
+    }, 5000); // 5-second interval
+  });
+
+
+// functions for the book now button
+function bookNow() {
+    alert("Book your slot . Our team will contact you soon.");
+    window.location.href = "BookNow.html"; // Redirect to contact.html
+}
+
+
+// the photography and the videography service that we offers 
+
+function revealOnScroll() {
+    const elements = document.querySelectorAll('.photo-video-box');
+    const windowHeight = window.innerHeight;
+
+    elements.forEach(el => {
+        const positionFromTop = el.getBoundingClientRect().top;
+
+        if (positionFromTop - windowHeight <= -50) {
+            el.classList.add('show');
+        }
+    });
+}
+
+window.addEventListener('scroll', revealOnScroll);
+window.addEventListener('load', revealOnScroll);
+
+
+// after the landing page the animation part of javascript is :
+
+
+function handleScrollAnimation() {
+    const textContent = document.querySelector(".text-content");
+    const imageContainer = document.querySelector(".image-container");
+    const section = document.querySelector(".team-section");
+
+    const sectionTop = section.getBoundingClientRect().top;
+    const windowHeight = window.innerHeight;
+
+    if (sectionTop < windowHeight - 100) { // Trigger before fully visible
+        textContent.classList.add("show");
+        imageContainer.classList.add("show");
+    }
+}
+
+window.addEventListener("scroll", handleScrollAnimation);
+window.addEventListener("load", handleScrollAnimation); // Trigger on page load
+
+// about us
+
+
+
+
+
+    </script>
+  </body>
 </html>
