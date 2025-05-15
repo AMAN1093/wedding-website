@@ -1,5 +1,12 @@
+const mobileMenu = document.getElementById('mobile-menu');
+const navLinks = document.querySelector('.nav-links');
 
-        // Firebase Configuration - Replace with your actual config
+mobileMenu.addEventListener('click', () => {
+    navLinks.classList.toggle('active');
+});
+
+
+// Firebase Configuration - Replace with your actual config
 const firebaseConfig = {
     apiKey: "AIzaSyCVqccX7ErOA-TJPv4b2kLw76sDSUGtXQM",
     authDomain: "review-firebase--app.firebaseapp.com",
