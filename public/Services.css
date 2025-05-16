@@ -3,12 +3,12 @@
     padding: 0;
     box-sizing: border-box;
     font-family: 'Poppins', sans-serif;
-}
+}*/
 
 body {
-    background-color: #ffffff;
+    background: linear-gradient(to right, #99c0d0, #1c5568, #2c5364);
     color: #000;
-} */
+} 
 .navbar {
     position: fixed;
     top: 0;
@@ -203,7 +203,7 @@ body {
     font-family: "Pacifico", cursive;
     font-size: 36px;
     margin-bottom: 20px;
-    color: #333;
+    color: #0c0c0c;
 }
 
 .slider-container {
@@ -225,7 +225,7 @@ body {
     overflow: hidden;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     transition: transform 0.3s ease-in-out;
-    background: #fff;
+    background: linear-gradient(to bottom, #0f2027, #203a43, #2c5364);
 }
 
 .card:hover {
@@ -247,13 +247,13 @@ body {
 .card-content a {
     font-family: 'Dancing Script', cursive;
     text-decoration: none;
-    color: #333;
+    color: #0c0c0c;
     font-size: 18px;
     font-weight: bold;
 }
 
 .card-content a:hover {
-    color: #d81b60;
+    color: #dd1212;
 }
 
 .prev, .next {
@@ -284,7 +284,7 @@ body {
 /* Dronning Section */
 .main-section {
     display: flex;
-    background-color: #ebebeb;
+    background: linear-gradient(to top, #99c0d0, #26738d, #2c5364);
     padding: 40px;
     border-radius: 7px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
