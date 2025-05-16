@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Team SPC - Featured Reviews</title>
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-firestore-compat.js"></script>
+    <style>
+        /* Reset and base styles */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+        }
+        
+        /* Featured Reviews Section */
+        .featured-reviews-section {
+            padding: 4rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .featured-reviews-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            font-size: 2.5rem;
+            color: #333;
+            position: relative;
+        }
+        
+        .featured-reviews-title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: #ff6b6b;
+            margin: 1rem auto;
+        }
+        
+        .featured-reviews-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+        
+        .featured-review-card {
+            background: white;
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .featured-review-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .featured-review-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+        
+        .featured-reviewer-name {
+            font-weight: bold;
+            font-size: 1.2rem;
+            color: #333;
+        }
+        
+        .featured-review-date {
+            color: #777;
+            font-size: 0.9rem;
+        }
+        
+        .featured-rating {
+            color: #FFD700;
+            font-size: 1.2rem;
+            margin: 0.5rem 0;
+        }
+        
+        .featured-review-text {
+            color: #555;
+            line-height: 1.6;
+            margin: 1rem 0;
+        }
+        
+        .featured-service-used {
+            font-style: italic;
+            color: #777;
+            font-size: 0.9rem;
+        }
+        
+        .view-all-btn {
+            display: block;
+            text-align: center;
+            margin-top: 2rem;
+        }
+        
+        .view-all-btn a {
+            display: inline-block;
+            padding: 12px 30px;
+            background-color: #ff6b6b;
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+        
+        .view-all-btn a:hover {
+            background-color: #ff5252;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 107, 107, 0.3);
+        }
+        
+        /* Loading and error states */
+        .loading {
+            text-align: center;
+            color: #666;
+            font-style: italic;
+        }
+        
+        .error {
+            text-align: center;
+            color: #ff6b6b;
+            font-weight: bold;
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .featured-reviews-title {
+                font-size: 2rem;
+            }
+            
+            .featured-reviews-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <section class="featured-reviews-section">
+        <h1 class="featured-reviews-title">What Our Clients Say</h1>
+        
+        <div class="featured-reviews-container" id="featuredReviewsContainer">
+            <p class="loading">Loading featured reviews...</p>
+        </div>
+        
+        <div class="view-all-btn">
+            <a href="testimonials.html">View All Reviews</a>
+        </div>
+    </section>
+
+    <script>
+        // Firebase Configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyCVqccX7ErOA-TJPv4b2kLw76sDSUGtXQM",
+            authDomain: "review-firebase--app.firebaseapp.com",
+            projectId: "review-firebase--app",
+            storageBucket: "review-firebase--app.appspot.com",
+            messagingSenderId: "1077615941552",
+            appId: "1:1077615941552:web:15e1d4aae8c410664e6875"
+        };
+
+        // Initialize Firebase
+        const app = firebase.initializeApp(firebaseConfig);
+        const db = firebase.firestore(app);
+
+        // Helper Functions
+        function formatDate(timestamp) {
+            if (!timestamp?.toDate) return "Date not available";
+            const options = { year: 'numeric', month: 'long', day: 'numeric' };
+            return timestamp.toDate().toLocaleDateString('en-US', options);
+        }
+
+        function createStarRating(rating) {
+            if (!rating) return "☆☆☆☆☆";
+            return '★'.repeat(rating) + '☆'.repeat(5 - rating);
+        }
+
+        // Load and Display Featured Reviews (only 3)
+        function loadFeaturedReviews() {
+            const container = document.getElementById('featuredReviewsContainer');
+
+            container.innerHTML = '<p class="loading">Loading featured reviews...</p>';
+
+            db.collection("reviews")
+                .orderBy("timestamp", "desc")
+                .limit(3)
+                .get()
+                .then((querySnapshot) => {
+                    container.innerHTML = '';
+
+                    if (querySnapshot.empty) {
+                        container.innerHTML = '<p class="no-reviews">No reviews yet.</p>';
+                        return;
+                    }
+
+                    querySnapshot.forEach(doc => {
+                        const data = doc.data();
+                        const card = document.createElement('div');
+                        card.className = 'featured-review-card';
+                        card.innerHTML = `
+                            <div class="featured-review-header">
+                                <span class="featured-reviewer-name">${data.name || "Anonymous"}</span>
+                                <span class="featured-review-date">${formatDate(data.timestamp)}</span>
+                            </div>
+                            <div class="featured-rating">
+                                ${createStarRating(data.rating)} (${data.rating}/5)
+                            </div>
+                            <p class="featured-review-text">${data.text || "No review text provided"}</p>
+                            <div class="featured-service-used">Service: ${data.service || "Not specified"}</div>
+                        `;
+                        container.appendChild(card);
+                    });
+                })
+                .catch((error) => {
+                    console.error("Error loading featured reviews:", error);
+                    container.innerHTML = `<p class="error">Error loading reviews: ${error.message}</p>`;
+                });
+        }
+
+        // Initialize when page loads
+        window.addEventListener('DOMContentLoaded', () => {
+            loadFeaturedReviews();
+        });
+    </script>
+</body>
+</html>
