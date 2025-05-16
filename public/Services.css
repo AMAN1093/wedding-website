@@ -417,10 +417,11 @@ body {
         }
         
         .featured-reviews-title {
+            font-family: 'Pacifico', cursive;
             text-align: center;
             margin-bottom: 3rem;
             font-size: 2.5rem;
-            color: #333;
+            color: #090909;
             position: relative;
         }
         
